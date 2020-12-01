@@ -26,4 +26,6 @@ a. This tmux session is the console session to the firmware sample.
 1. If you did not get a tmux session; a failure occurred during the seven firmadyne steps. We keep a ```samples-out``` folder to collect and debug emulation efforts.  
 a. ex ```2.bin-extractor-output  2.bin-getArch-output  2.bin-inferNetwork-output  2.bin-makeImage-output```
 
-
+## Authors
+o Charles Boyd  
+o DJ Forbes  
