@@ -13,7 +13,7 @@ Improve Firmadyne (https://github.com/firmadyne/firmadyne) and make it simpler t
 a. ```command``` section has  "foo", "1.bin" ; this is the "Manufacturers Name" and file name.  
 b. ```volumes``` section has path to firmware samples and mapping to local images.  
 3. Copy the relevant sections multiple times (given x samples).  
-a. copy section from ```emaultor-1``` until next entry.   
+a. copy section from ```emulator-1``` until next entry.   
 b. manually increment the desired ip address.  
 4. ```make build and make start```  
 5. ```docker exec CONTAINERID bash```  
