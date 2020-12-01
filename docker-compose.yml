@@ -1,0 +1,123 @@
+version: '3.5'
+
+networks:
+  autodyne:
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.21.0.0/24
+    name: autodyne
+
+services:
+  postgres:
+    image: postgres
+    container_name: autodyne-db
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=firmadyne
+      - POSTGRES_PASSWORD=firmadyne
+      - POSTGRES_DB=firmware
+    networks:
+      autodyne:
+        ipv4_address: 172.21.0.2
+        aliases:
+          - postgres
+          - autodyne-db
+  autodyne:
+    image: autodyne
+    container_name: autodyne
+    depends_on:
+      - postgres
+    privileged: true
+    environment:
+      - AUTODYNE_INIT_DB=1
+    devices:
+      - "/dev/mapper/control:/dev/mapper/control"
+      - "/dev/loop-control:/dev/loop-control"
+      - "/dev/loop0:/dev/loop0"
+      - "/dev/loop1:/dev/loop1"
+      - "/dev/loop2:/dev/loop2"
+      - "/dev/loop3:/dev/loop3"
+      - "/dev/loop4:/dev/loop4"
+      - "/dev/loop5:/dev/loop5"
+      - "/dev/loop6:/dev/loop6"
+      - "/dev/loop7:/dev/loop7"
+      - "/dev/loop8:/dev/loop8"
+      - "/dev/loop9:/dev/loop9"
+      - "/dev/loop10:/dev/loop10"
+      - "/dev/loop11:/dev/loop11"
+      - "/dev/loop12:/dev/loop12"
+    command: ["sh", "-c", "sleep 2073600"]
+    volumes:
+      - ./samples:/opt/firmadyne/samples
+      - ./sample_output:/opt/firmadyne/samples-out
+    networks:
+      autodyne:
+        ipv4_address: 172.21.0.3
+        aliases:
+          - autodyne
+  emulator-1:
+    image: autodyne
+    container_name: autodyne-em1
+    depends_on:
+      - postgres
+      - autodyne
+    privileged: true
+    devices:
+      - "/dev/mapper/control:/dev/mapper/control"
+      - "/dev/loop-control:/dev/loop-control"
+      - "/dev/loop0:/dev/loop0"
+      - "/dev/loop1:/dev/loop1"
+      - "/dev/loop2:/dev/loop2"
+      - "/dev/loop3:/dev/loop3"
+      - "/dev/loop4:/dev/loop4"
+      - "/dev/loop5:/dev/loop5"
+      - "/dev/loop6:/dev/loop6"
+      - "/dev/loop7:/dev/loop7"
+      - "/dev/loop8:/dev/loop8"
+      - "/dev/loop9:/dev/loop9"
+      - "/dev/loop10:/dev/loop10"
+      - "/dev/loop11:/dev/loop11"
+      - "/dev/loop12:/dev/loop12"
+    command: [ "/opt/firmadyne/autodyne-0.5a.sh", "foo", "1.bin"]
+    volumes:
+      - ./samples:/opt/firmadyne/samples
+      - ./sample_output:/opt/firmadyne/samples-out
+    networks:
+      autodyne:
+        ipv4_address: 172.21.0.4
+        aliases:
+          - autodyne-em1
+  emulator-2:
+    image: autodyne
+    container_name: autodyne-em2
+    depends_on:
+      - postgres
+      - autodyne
+    privileged: true
+    devices:
+      - "/dev/mapper/control:/dev/mapper/control"
+      - "/dev/loop-control:/dev/loop-control"
+      - "/dev/loop0:/dev/loop0"
+      - "/dev/loop1:/dev/loop1"
+      - "/dev/loop2:/dev/loop2"
+      - "/dev/loop3:/dev/loop3"
+      - "/dev/loop4:/dev/loop4"
+      - "/dev/loop5:/dev/loop5"
+      - "/dev/loop6:/dev/loop6"
+      - "/dev/loop7:/dev/loop7"
+      - "/dev/loop8:/dev/loop8"
+      - "/dev/loop9:/dev/loop9"
+      - "/dev/loop10:/dev/loop10"
+      - "/dev/loop11:/dev/loop11"
+      - "/dev/loop12:/dev/loop12"
+    command: [ "/opt/firmadyne/autodyne-0.5a.sh", "netgear", "2.bin"]
+    volumes:
+      - ./samples:/opt/firmadyne/samples
+      - ./sample_output:/opt/firmadyne/samples-out
+    networks:
+      autodyne:
+        ipv4_address: 172.21.0.5
+        aliases:
+          - autodyne-em2
