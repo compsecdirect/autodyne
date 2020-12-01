@@ -12,8 +12,9 @@ Improve Firmadyne (https://github.com/firmadyne/firmadyne) and make it simpler t
 2. Edit the ```docker-compose.yml``` to include the desired "Manufacturer name" (can be anything) and path to samples.  
 a. ```command``` section has  "foo", "1.bin" ; this is the "Manufacturers Name" and file name.  
 b. ```volumes``` section has path to firmware samples and mapping to local images.  
-3. Copy the relevant sections multiple times (given x samples).
-a.copy section from ```emaultor-1``` until next entry.   
+3. Copy the relevant sections multiple times (given x samples).  
+a. copy section from ```emaultor-1``` until next entry.   
+b. manually increment the desired ip address.  
 4. ```make build and make start```  
 5. ```docker exec CONTAINERID bash```  
 6. ```tmux ls```  
