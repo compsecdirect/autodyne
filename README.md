@@ -4,7 +4,7 @@
 
 ## Purpose
 
-Improve Firmadyne (https://github.com/firmadyne/firmadyne) and make it simpler to extract, emualte firmware for analysis.  
+Improve Firmadyne (https://github.com/firmadyne/firmadyne) and make it simpler to extract, emulate firmware for analysis.  
 
 ## Usage
 
