@@ -1,6 +1,6 @@
 # docker build -t firmadyne .
 
-FROM ubuntu:18.04
+FROM ubuntu:20.04
 
 WORKDIR /opt
 ARG DEBIAN_FRONTEND=noninteractive
