@@ -34,7 +34,7 @@ RUN sudo apt install python3-distutils -y
 RUN sudo apt-get update && apt-get install -y \
         python \
     python-crcmod
-RUN sudo  curl https://bootstrap.pypa.io/get-pip.py -o ./get-pip.py
+RUN sudo curl https://bootstrap.pypa.io/pip/2.7/get-pip.py -o ./get-pip.py
 RUN sudo python get-pip.py
 RUN cd /opt
 RUN sudo -H pip install git+https://github.com/ahupp/python-magic
