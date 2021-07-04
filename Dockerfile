@@ -18,16 +18,16 @@ ENV TZ=America/New_York
 
 
 RUN sudo apt-get update && sudo apt-get -y upgrade
-# Weird hijack to install cramfs on ubuntu 20....
-RUN wget http://mirrors.kernel.org/ubuntu/pool/universe/c/cramfs/cramfsprogs_1.1-6ubuntu1_amd64.deb -O /tmp/cramfsprogs_1.1-6ubuntu1_amd64.deb && sudo dpkg -i /tmp/cramfsprogs_1.1-6ubuntu1_amd64.deb
 
-# python-psycopg2
-RUN sudo apt-get build-dep pip install psycopg2-binary -y
-RUN pip install psycopg2-binary
 RUN sudo apt-get install busybox-static fakeroot git tmux dmsetup kpartx netcat-openbsd nmap python3-psycopg2 libmagic1 python-lzma python-lzo liblzo2-dev python-six snmp uml-utilities util-linux vlan git unzip curl wget nano postgresql-client socat -y
 RUN sudo apt-get install qemu-system-arm qemu-system-mips qemu-system-x86 qemu-utils -y
 
-# Weird hijack to install on ubuntu 20....
+# Weird hijack to install python-psycopg2 on ubuntu 20....
+RUN sudo apt-get build-dep pip install psycopg2-binary -y
+RUN pip install psycopg2-binary
+
+# Weird hijack to install cramfs on ubuntu 20....
+RUN wget http://mirrors.kernel.org/ubuntu/pool/universe/c/cramfs/cramfsprogs_1.1-6ubuntu1_amd64.deb -O /tmp/cramfsprogs_1.1-6ubuntu1_amd64.deb && sudo dpkg -i /tmp/cramfsprogs_1.1-6ubuntu1_amd64.deb
 
 RUN sudo apt-get install mtd-utils gzip bzip2 tar arj lhasa p7zip p7zip-full cabextract cramfsswap squashfs-tools sleuthkit default-jdk lzop srecord -y -m
 
