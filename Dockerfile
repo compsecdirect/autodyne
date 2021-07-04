@@ -19,7 +19,9 @@ ENV TZ=America/New_York
 
 RUN sudo apt-get update && sudo apt-get -y upgrade
 
-RUN sudo apt-get install busybox-static fakeroot git tmux dmsetup kpartx netcat-openbsd nmap python3-psycopg2 libmagic1 liblzo2-dev python-six snmp uml-utilities util-linux vlan git unzip curl wget nano postgresql-client socat python -y
+RUN sudo apt-get install busybox-static fakeroot git tmux dmsetup kpartx netcat-openbsd nmap python3-psycopg2 \
+libmagic1 liblzo2-dev python-six snmp uml-utilities util-linux vlan git unzip curl wget nano postgresql-client
+socat python -y
 RUN sudo apt-get install qemu-system-arm qemu-system-mips qemu-system-x86 qemu-utils -y
 
 # Weird hijack to install python-psycopg2 on ubuntu 20....
@@ -31,6 +33,7 @@ RUN wget http://http.us.debian.org/debian/pool/main/p/psycopg2/python-psycopg2_2
 RUN wget http://mirrors.kernel.org/ubuntu/pool/universe/c/cramfs/cramfsprogs_1.1-6ubuntu1_amd64.deb -O /tmp/cramfsprogs_1.1-6ubuntu1_amd64.deb && sudo dpkg -i /tmp/cramfsprogs_1.1-6ubuntu1_amd64.deb
 RUN wget http://mirrors.kernel.org/ubuntu/pool/universe/p/python-lzma/python-lzma_0.5.3-3_amd64.deb -O /tmp/python-lzma_0.5.3-3_amd64.deb && sudo dpkg -i /tmp/python-lzma_0.5.3-3_amd64.deb
 RUN wget http://mirrors.kernel.org/ubuntu/pool/universe/p/python-lzo/python-lzo_1.08-1_amd64.deb -O /tmp/python-lzo_1.08-1_amd64.deb && sudo dpkg -i /tmp/python-lzo_1.08-1_amd64.deb
+RUN wget http://mirrors.kernel.org/ubuntu/pool/universe/p/python-crcmod/python-crcmod_1.7-1_amd64.deb -O /tmp/python-crcmod_1.7-1_amd64.deb && sudo dpkg -i /tmp/python-crcmod_1.7-1_amd64.deb
 
 RUN sudo apt-get install mtd-utils gzip bzip2 tar arj lhasa p7zip p7zip-full cabextract cramfsswap squashfs-tools sleuthkit default-jdk lzop srecord -y -m
 
@@ -38,7 +41,7 @@ RUN sudo apt-get install mtd-utils gzip bzip2 tar arj lhasa p7zip p7zip-full cab
 RUN sudo apt install python3-distutils -y
 
 # Python & pip
-RUN sudo apt-get update && apt-get install python-crcmod -y
+RUN sudo apt-get update && apt-get install -y
 RUN sudo curl https://bootstrap.pypa.io/pip/2.7/get-pip.py -o ./get-pip.py
 RUN sudo python get-pip.py
 RUN cd /opt
