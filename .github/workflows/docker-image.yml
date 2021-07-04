@@ -5,6 +5,8 @@ on:
     branches: [ main ]
   pull_request:
     branches: [ main ]
+  schedule:
+    -  cron: '0 1 * * *'
 
 jobs:
 
@@ -15,15 +17,21 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag autodyne-$(date +%s) --tag compsecdirect/autodyne:latest
+      run: docker build . --file Dockerfile --tag compsecdirect/autodyne:$(date +%Y.%m.%d) --tag compsecdirect/autodyne:latest
     - name: Login to DockerHub
       uses: docker/login-action@v1
       with:
         username: ${{ secrets.REGISTRY_USERNAME }}
         password: ${{ secrets.REGISTRY_PASSWORD }}
-    - name: Push the image to docker hub
-      id: docker_build
+    - name: Push the lastest image to docker hub
+      id: docker_build_latest
       uses: docker/build-push-action@v2
       with:
         push: true
         tags: compsecdirect/autodyne:latest
+    - name: Push the daily image to docker hub
+        id: docker_build_daily
+        uses: docker/build-push-action@v2
+        with:
+          push: true
+          tags: compsecdirect/autodyne:$(date +%Y.%m.%d)
