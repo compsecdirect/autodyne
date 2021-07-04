@@ -16,6 +16,9 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - name: Get and Set Date used for tags
+      id:  date
+      run:  echo "::set-output name=date::$(date +'%Y.%m.%d')"
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag compsecdirect/autodyne:$(date +%Y.%m.%d) --tag compsecdirect/autodyne:latest
     - name: Login to DockerHub
@@ -35,4 +38,4 @@ jobs:
       uses: docker/build-push-action@v2
       with:
         push: true
-        tags: compsecdirect/autodyne:$(date +%Y.%m.%d)
+        tags: compsecdirect/autodyne:${{steps.date.outputs.date))
