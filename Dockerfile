@@ -23,10 +23,11 @@ RUN sudo apt-get install busybox-static fakeroot git tmux dmsetup kpartx netcat-
 RUN sudo apt-get install qemu-system-arm qemu-system-mips qemu-system-x86 qemu-utils -y
 
 # Weird hijack to install python-psycopg2 on ubuntu 20....
-RUN sudo apt-get build-dep pip install psycopg2-binary -y
-RUN pip install psycopg2-binary
+#RUN sudo apt-get build-dep pip install psycopg2-binary -y
+#RUN pip install psycopg2-binary
 
-# Weird hijack to install cramfs, python-lzma, python-lzo on ubuntu 20....
+# Weird hijack to install cramfs, python-lzma, python-lzo, psycopg2 on ubuntu 20....
+RUN wget http://http.us.debian.org/debian/pool/main/p/psycopg2/python-psycopg2_2.7.7-1_amd64.deb -O /tmp/python-psycopg2_2.7.7-1_amd64.deb && sudo dpkg -i /tmp/python-psycopg2_2.7.7-1_amd64.deb
 RUN wget http://mirrors.kernel.org/ubuntu/pool/universe/c/cramfs/cramfsprogs_1.1-6ubuntu1_amd64.deb -O /tmp/cramfsprogs_1.1-6ubuntu1_amd64.deb && sudo dpkg -i /tmp/cramfsprogs_1.1-6ubuntu1_amd64.deb
 RUN wget http://mirrors.kernel.org/ubuntu/pool/universe/p/python-lzma/python-lzma_0.5.3-3_amd64.deb -O /tmp/python-lzma_0.5.3-3_amd64.deb && sudo dpkg -i /tmp/python-lzma_0.5.3-3_amd64.deb
 RUN wget http://mirrors.kernel.org/ubuntu/pool/universe/p/python-lzo/python-lzo_1.08-1_amd64.deb -O /tmp/python-lzo_1.08-1_amd64.deb && sudo dpkg -i /tmp/python-lzo_1.08-1_amd64.deb
