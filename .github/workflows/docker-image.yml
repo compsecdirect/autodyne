@@ -15,9 +15,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag autodyne-$(date +%s)
-    - name: Tag latest docker build
-      run:  docker tag autodyne-$(date +%s) compsecdirect/autodyne:latest
+      run: docker build . --file Dockerfile --tag autodyne-$(date +%s) --tag compsecdirect/autodyne:latest
     - name: Login to DockerHub
       uses: docker/login-action@v1
       with:
