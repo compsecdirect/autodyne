@@ -1,3 +1,5 @@
+[![Docker Image CI](https://github.com/compsecdirect/autodyne/actions/workflows/docker-image.yml/badge.svg?branch=main)](https://github.com/compsecdirect/autodyne/actions/workflows/docker-image.yml)
+[![Docker Image CI Develop](https://github.com/compsecdirect/autodyne/actions/workflows/docker-image-develop.yml/badge.svg?branch=develop)](https://github.com/compsecdirect/autodyne/actions/workflows/docker-image-develop.yml)
 ![alt text](https://github.com/compsecdirect/autodyne/blob/main/Autodyne-CompSecDirect.png "Autodyne logo")  
 
 # Autodyne: Automated firmadyne by CompSec Direct
