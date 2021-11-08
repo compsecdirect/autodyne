@@ -28,4 +28,4 @@ a. ex ```2.bin-extractor-output  2.bin-getArch-output  2.bin-inferNetwork-output
 
 ## Authors
 o Charles Boyd  
-o DJ Forbes  
+o DJ Forbes
