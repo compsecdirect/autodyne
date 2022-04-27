@@ -31,9 +31,7 @@ RUN sudo apt-get install mtd-utils gzip bzip2 tar arj lhasa p7zip p7zip-full cab
 RUN sudo apt install python3-distutils -y
 
 # Python & pip
-RUN sudo apt-get update && apt-get install -y \
-        python \
-    python-crcmod
+RUN sudo apt-get update && apt-get install -y python python-crcmod python3-pip
 RUN sudo curl https://bootstrap.pypa.io/pip/2.7/get-pip.py -o ./get-pip.py
 RUN sudo python get-pip.py
 RUN cd /opt
