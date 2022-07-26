@@ -7,9 +7,11 @@ ARG DEBIAN_FRONTEND=noninteractive
 ENV DEBIAN_FRONTEND=noninteractive
 
 # Update packages
+
 RUN apt-get update && apt-get upgrade -y && apt-get install -y sudo
 
 #TZ
+
 ADD tzset.sh /tmp
 RUN chmod +x /tmp/tzset.sh
 RUN /tmp/tzset.sh
