@@ -25,6 +25,8 @@ a. This tmux session is the console session to the firmware sample.
 
 ## Notes
 
+0. main branch is ubuntu 18.04 / dev branch is ubuntu 20.04 base images.  
+
 1. If you did not get a tmux session; a failure occurred during the seven firmadyne steps. We keep a ```samples-out``` folder to collect and debug emulation efforts.  
 bin-extractor-output  
 bin-getArch-output  
