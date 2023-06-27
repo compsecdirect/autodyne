@@ -44,7 +44,7 @@ RUN sudo git clone --recursive https://github.com/nlitsme/ubidump.git
 RUN pip install crcmod
 
 RUN cd /opt
-RUN sudo git clone --recursive https://github.com/jrspruitt/ubi_reader.git
+RUN sudo git clone --recursive https://github.com/jrspruitt/ubi_reader.git -b v0.8.5-master 
 RUN cd ubi_reader
 RUN sudo pip install ubi_reader
 WORKDIR /opt/ubi_reader
