@@ -19,6 +19,10 @@ cd /opt/firmadyne
 echo "Setting $Manufacturer for $FW"
 echo "Here is basename $BASENAME"
 
+# setup nginx
+ln -s /etc/nginx/sites-available/$CONTAINER_NAME/default /etc/nginx/sites-enabled/
+service nginx start
+
 setup() {
 
     if [ -f /etc/autodyne-cfg.sh ];
