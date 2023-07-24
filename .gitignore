@@ -1,0 +1,5 @@
+samples/*
+!samples/.gitkeep
+
+samples-out/*
+!samples-out/.gitkeep
