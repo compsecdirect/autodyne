@@ -51,7 +51,7 @@ services:
     command: ["sh", "-c", "sleep 2073600"]
     volumes:
       - ./samples:/opt/firmadyne/samples
-      - ./samples-out:/opt/firmadyne/samples-out
+      - ./sample_output:/opt/firmadyne/samples-out
     networks:
       autodyne:
         ipv4_address: 172.21.0.3
@@ -80,44 +80,44 @@ services:
       - "/dev/loop10:/dev/loop10"
       - "/dev/loop11:/dev/loop11"
       - "/dev/loop12:/dev/loop12"
-    command: [ "/opt/firmadyne/autodyne-0.5a.sh", "netgear", "1.tar"]
+    command: [ "/opt/firmadyne/autodyne-0.5a.sh", "foo", "1.bin"]
     volumes:
       - ./samples:/opt/firmadyne/samples
-      - ./samples-out:/opt/firmadyne/samples-out
+      - ./sample_output:/opt/firmadyne/samples-out
     networks:
       autodyne:
         ipv4_address: 172.21.0.4
         aliases:
           - autodyne-em1
-  # emulator-2:
-  #   image: autodyne
-  #   container_name: autodyne-em2
-  #   depends_on:
-  #     - postgres
-  #     - autodyne
-  #   privileged: true
-  #   devices:
-  #     - "/dev/mapper/control:/dev/mapper/control"
-  #     - "/dev/loop-control:/dev/loop-control"
-  #     - "/dev/loop0:/dev/loop0"
-  #     - "/dev/loop1:/dev/loop1"
-  #     - "/dev/loop2:/dev/loop2"
-  #     - "/dev/loop3:/dev/loop3"
-  #     - "/dev/loop4:/dev/loop4"
-  #     - "/dev/loop5:/dev/loop5"
-  #     - "/dev/loop6:/dev/loop6"
-  #     - "/dev/loop7:/dev/loop7"
-  #     - "/dev/loop8:/dev/loop8"
-  #     - "/dev/loop9:/dev/loop9"
-  #     - "/dev/loop10:/dev/loop10"
-  #     - "/dev/loop11:/dev/loop11"
-  #     - "/dev/loop12:/dev/loop12"
-  #   command: [ "/opt/firmadyne/autodyne-0.5a.sh", "netgear", "2.bin"]
-  #   volumes:
-  #     - ./samples:/opt/firmadyne/samples
-  #     - ./samples-out:/opt/firmadyne/samples-out
-  #   networks:
-  #     autodyne:
-  #       ipv4_address: 172.21.0.5
-  #       aliases:
-  #         - autodyne-em2
+  emulator-2:
+    image: autodyne
+    container_name: autodyne-em2
+    depends_on:
+      - postgres
+      - autodyne
+    privileged: true
+    devices:
+      - "/dev/mapper/control:/dev/mapper/control"
+      - "/dev/loop-control:/dev/loop-control"
+      - "/dev/loop0:/dev/loop0"
+      - "/dev/loop1:/dev/loop1"
+      - "/dev/loop2:/dev/loop2"
+      - "/dev/loop3:/dev/loop3"
+      - "/dev/loop4:/dev/loop4"
+      - "/dev/loop5:/dev/loop5"
+      - "/dev/loop6:/dev/loop6"
+      - "/dev/loop7:/dev/loop7"
+      - "/dev/loop8:/dev/loop8"
+      - "/dev/loop9:/dev/loop9"
+      - "/dev/loop10:/dev/loop10"
+      - "/dev/loop11:/dev/loop11"
+      - "/dev/loop12:/dev/loop12"
+    command: [ "/opt/firmadyne/autodyne-0.5a.sh", "netgear", "2.bin"]
+    volumes:
+      - ./samples:/opt/firmadyne/samples
+      - ./sample_output:/opt/firmadyne/samples-out
+    networks:
+      autodyne:
+        ipv4_address: 172.21.0.5
+        aliases:
+          - autodyne-em2
