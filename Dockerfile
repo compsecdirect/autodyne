@@ -69,7 +69,7 @@ RUN cd /opt
 RUN git clone --recursive https://github.com/firmadyne/firmadyne.git
 
 RUN mkdir -p /opt/firmadyne/samples/
-RUN mkdir -p /opt/firmadyne/sample-out/
+RUN mkdir -p /opt/firmadyne/samples-out/
 
 WORKDIR /opt/firmadyne
 RUN /opt/firmadyne/download.sh

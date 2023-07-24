@@ -10,7 +10,7 @@ Improve Firmadyne (https://github.com/firmadyne/firmadyne) and make it simpler t
 
 ## Usage
 
-1. Get firmware samples to analyze. ```mkdir samples samples-output``` Add firmware to ```samples``` folder
+1. Get firmware samples to analyze. ```mkdir samples samples-out``` Add firmware to ```samples``` folder
 2. Edit the ```docker-compose.yml``` to include the desired "Manufacturer name" (can be anything) and path to samples.  
 a. ```command``` section has  "foo", "1.bin" ; this is the "Manufacturers Name" and file name.  
 b. ```volumes``` section has path to firmware samples and mapping to local images.  
