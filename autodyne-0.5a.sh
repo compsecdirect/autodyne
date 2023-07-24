@@ -20,8 +20,10 @@ echo "Setting $Manufacturer for $FW"
 echo "Here is basename $BASENAME"
 
 # setup nginx
-ln -s /etc/nginx/sites-available/$CONTAINER_NAME/default /etc/nginx/sites-enabled/
+rm /etc/nginx/sites-enabled/default
+ln -s /etc/nginx/sites-available/$CONTAINER_NAME/default /etc/nginx/sites-enabled/default
 service nginx start
+sleep 5
 
 setup() {
 

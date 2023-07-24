@@ -52,6 +52,7 @@ services:
     volumes:
       - ./samples:/opt/firmadyne/samples
       - ./samples-out:/opt/firmadyne/samples-out
+      - ./nginx-config:/etc/nginx/sites-available
     networks:
       autodyne:
         ipv4_address: 172.21.0.3
@@ -119,7 +120,7 @@ services:
       - "/dev/loop12:/dev/loop12"
     command: [ "/opt/firmadyne/autodyne-0.5a.sh", "netgear", "2.bin"]
     environment:
-      - CONTAINER_NAME=autodyne-em1
+      - CONTAINER_NAME=autodyne-em2
     ports:
       - 3002:80
     volumes:
