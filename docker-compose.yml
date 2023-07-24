@@ -51,7 +51,7 @@ services:
     command: ["sh", "-c", "sleep 2073600"]
     volumes:
       - ./samples:/opt/firmadyne/samples
-      - ./sample_output:/opt/firmadyne/samples-out
+      - ./samples-out:/opt/firmadyne/samples-out
     networks:
       autodyne:
         ipv4_address: 172.21.0.3
@@ -83,7 +83,7 @@ services:
     command: [ "/opt/firmadyne/autodyne-0.5a.sh", "foo", "1.bin"]
     volumes:
       - ./samples:/opt/firmadyne/samples
-      - ./sample_output:/opt/firmadyne/samples-out
+      - ./samples-out:/opt/firmadyne/samples-out
     networks:
       autodyne:
         ipv4_address: 172.21.0.4
@@ -115,7 +115,7 @@ services:
     command: [ "/opt/firmadyne/autodyne-0.5a.sh", "netgear", "2.bin"]
     volumes:
       - ./samples:/opt/firmadyne/samples
-      - ./sample_output:/opt/firmadyne/samples-out
+      - ./samples-out:/opt/firmadyne/samples-out
     networks:
       autodyne:
         ipv4_address: 172.21.0.5
