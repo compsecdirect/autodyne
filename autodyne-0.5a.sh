@@ -54,7 +54,7 @@ setup() {
 }
 
 run_extractor() {
-    ./sources/extractor/extractor.py -b $Manufacturer -sql ${FIRMADYNE_POSTGRES_HOST} -np -nk "$FW" images | tee /opt/firmadyne/sample-out/$BASENAME-extractor-output
+    python3 ./sources/extractor/extractor.py -b $Manufacturer -sql ${FIRMADYNE_POSTGRES_HOST} -np -nk "$FW" images | tee /opt/firmadyne/samples-out/$BASENAME-extractor-output
 }
 
 get_image_id() {
