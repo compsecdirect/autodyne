@@ -43,13 +43,13 @@ setup() {
     if [ ! -f ${FW} ];
     then
         echo "${FW} does not exist or is not readable, exiting"
-        exit -1
+        exit 1
     fi
 
     if [ -z ${Manufacturer} ];
     then
         "Manufacturer not provided."
-        $Manufacturer=unknown
+        Manufacturer=unknown
     fi
 }
 
