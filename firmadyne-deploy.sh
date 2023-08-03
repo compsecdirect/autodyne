@@ -13,25 +13,25 @@ pip3 install python-magic
 
 #ubifs
 git clone https://github.com/nlitsme/ubidump.git
-cd ubidump
+cd ubidump || exit
 pip install -r requirements.txt
 pip install crcmod
 
 git clone https://github.com/jrspruitt/ubi_reader
-cd ubi_reader
+cd ubi_reader || exit
 sudo python setup.py install
 
 #binwalk
-cd /opt
+cd /opt || exit
 git clone https://github.com/devttys0/binwalk.git
-cd binwalk
+cd binwalk || exit
 sudo ./deps.sh --yes
 sudo python3 ./setup.py install
 
 #firmadyne
-cd /opt
+cd /opt || exit
 git clone --recursive https://github.com/firmadyne/firmadyne.git
-cd firmadyne
+cd firmadyne || exit
 
 #postgres
 

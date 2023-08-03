@@ -24,7 +24,7 @@ RUN sudo apt-get update && sudo apt-get -y upgrade
 RUN sudo apt-get install busybox-static fakeroot git tmux dmsetup kpartx netcat-openbsd nmap python3-psycopg2 \
 libmagic1 liblzo2-dev python-six snmp uml-utilities util-linux vlan git unzip curl wget nano postgresql-client \
 socat python python3-pip -y
-RUN sudo pip3 install python-magic
+RUN sudo pip3 install python-magic six
 RUN sudo apt-get install qemu-system-arm qemu-system-mips qemu-system-x86 qemu-utils -y
 
 # Weird hijack to install python-psycopg2 on ubuntu 20....

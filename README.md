@@ -31,4 +31,5 @@ a. ex: ```bin-extractor-output```
 
 ## Authors
 o Charles Boyd  
-o DJ Forbes  
+o DJ Forbes
+o Jonty Kantiwal
