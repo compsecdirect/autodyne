@@ -4,9 +4,9 @@
 # CompSec Direct
 # Version 0.5a
 # Authors: Charles Boyd, DJ Forbes, jfersec, jkantiwal
-# Date: Jun 19 2020
-# Desired Invocation: ./autodyne-0.5a.sh foo samples/1.bin // where foo is the manufacturer and samples/1.bin is relative path to files
-# Docker invocation: docker run --privileged -v /home/ubuntu/samples:/opt/firmadyne/samples -v /home/ubuntu/samples-out:/opt/firmadyne/samples-out/ -dit firmadyne /opt/firmadyne/autodyne-0.5a.sh
+# Date: Aug 2 2023
+# Desired Invocation: ./autodyne-0.6.sh foo samples/1.bin // where foo is the manufacturer and samples/1.bin is relative path to files
+# Docker invocation: docker run --privileged -v /home/ubuntu/samples:/opt/firmadyne/samples -v /home/ubuntu/samples-out:/opt/firmadyne/samples-out/ -dit firmadyne /opt/firmadyne/autodyne-0.6.sh
 
 args=("$@")
 Manufacturer=${1}

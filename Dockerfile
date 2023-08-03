@@ -97,8 +97,8 @@ RUN useradd -m firmadyne
 RUN echo "firmadyne:firmadyne" | chpasswd && adduser firmadyne sudo
 
 USER root
-COPY autodyne-0.5a.sh /opt/firmadyne
-RUN chmod +x /opt/firmadyne/autodyne-0.5a.sh
+COPY autodyne-0.6.sh /opt/firmadyne
+RUN chmod +x /opt/firmadyne/autodyne-0.6.sh
 
 COPY startup.sh /opt/firmadyne/startup.sh
 RUN chmod +x /opt/firmadyne/startup.sh
