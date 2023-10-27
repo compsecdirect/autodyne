@@ -6,7 +6,7 @@
 # Author: Charles Boyd, DJ Forbes, jfersec
 # Date: Jun 19 2020
 # Desired Invocation: ./autodyne-0.5a.sh foo samples/1.bin // where foo is the manufacturer and samples/1.bin is relative path to files
-# Docker invocation: docker run --privileged -v /home/ubuntu/samples:/opt/firmadyne/samples -v /home/ubuntu/sample-out:/opt/firmadyne/sample-out/ -dit firmadyne /opt/firmadyne/autodyne-0.5a.sh
+# Docker invocation: docker run --privileged -v /home/ubuntu/samples:/opt/firmadyne/samples -v /home/ubuntu/sample-out:/opt/firmadyne/samples-out/ -dit firmadyne /opt/firmadyne/autodyne-0.5a.sh
 
 args=("$@")
 Manufacturer=${1}
@@ -54,11 +54,11 @@ setup() {
 }
 
 run_extractor() {
-    ./sources/extractor/extractor.py -b $Manufacturer -sql ${FIRMADYNE_POSTGRES_HOST} -np -nk "$FW" images | tee /opt/firmadyne/sample-out/$BASENAME-extractor-output
+    python3 ./sources/extractor/extractor.py -b $Manufacturer -sql ${FIRMADYNE_POSTGRES_HOST} -np -nk "$FW" images | tee /opt/firmadyne/samples-out/$BASENAME-extractor-output
 }
 
 get_image_id() {
-    local ImageID=$(grep "Database Image ID:" /opt/firmadyne/sample-out/$BASENAME-extractor-output | cut -d: -f2 | sed 's/ //g')
+    local ImageID=$(grep "Database Image ID:" /opt/firmadyne/samples-out/$BASENAME-extractor-output | cut -d: -f2 | sed 's/ //g')
 
     if [[ "$ImageID" -lt 0 ]]; then
         echo "Did not read in ImageID"
@@ -73,7 +73,7 @@ get_arch() {
     local ImageID=$1
     local DefaultArch=mipseb
 
-    local ReadArch=$(./scripts/getArch.sh $FPATH/images/${ImageID}.tar.gz | tee /opt/firmadyne/sample-out/$BASENAME-getArch-output)
+    local ReadArch=$(./scripts/getArch.sh $FPATH/images/${ImageID}.tar.gz | tee /opt/firmadyne/samples-out/$BASENAME-getArch-output)
 
     local Arch=$(echo ${ReadArch} | cut -d: -f2 | sed 's/ //g')
 
@@ -95,14 +95,14 @@ make_image() {
     local ImageID=$1
     local Arch=$(./scripts/getArch.sh ./images/${ImageID}.tar.gz | cut -d: -f2 | sed -e 's/ //g')
     # store make image output for creation of docker image
-    ./scripts/makeImage.sh $ImageID $Arch | tee /opt/firmadyne/sample-out/$BASENAME-makeImage-output
+    ./scripts/makeImage.sh $ImageID $Arch | tee /opt/firmadyne/samples-out/$BASENAME-makeImage-output
 }
 
 infer_network() {
     local ImageID=$1
     local Arch=$(./scripts/getArch.sh ./images/${ImageID}.tar.gz | cut -d: -f2 | sed -e 's/ //g')
-    ./scripts/inferNetwork.sh $ImageID $Arch | tee /opt/firmadyne/sample-out/$BASENAME-inferNetwork-output
-    local NICS=$(grep "Interfaces:" /opt/firmadyne/sample-out/$BASENAME-inferNetwork-output | cut -d: -f2 | cut -d, -f2 | sed 's/)]//g' | sed "s/'//g" | sed 's/ //g')
+    ./scripts/inferNetwork.sh $ImageID $Arch | tee /opt/firmadyne/samples-out/$BASENAME-inferNetwork-output
+    local NICS=$(grep "Interfaces:" /opt/firmadyne/samples-out/$BASENAME-inferNetwork-output | cut -d: -f2 | cut -d, -f2 | sed 's/)]//g' | sed "s/'//g" | sed 's/ //g')
     # store nic info for scanning
     echo $NICS
 }
