@@ -36,3 +36,6 @@ bin-makeImage-output
 ## Authors
 o Charles Boyd  
 o DJ Forbes
+
+## Contributors 
+o Jonty16117

@@ -46,4 +46,4 @@ sudo -u postgres psql -d firmware < ./database/schema
 ./download.sh
 
 
-docker run --privileged -it -v /Users/me/Desktop/autodyne/samples:/opt/firmadyne/samples -v /Users/me/Desktop/autodyne/sample_output:/opt/firmadyne/sample_output firmadyne /opt/firmadyne/autodyne-0.5a.sh
+docker run --privileged -it -v /Users/me/Desktop/autodyne/samples:/opt/firmadyne/samples -v /Users/me/Desktop/autodyne/sample_output:/opt/firmadyne/sample_output firmadyne /opt/firmadyne/autodyne-0.5b.sh
