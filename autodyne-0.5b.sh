@@ -71,7 +71,7 @@ get_image_id() {
 
 get_arch() {
     local ImageID=$1
-    local DefaultArch=mipseb
+    DefaultArch=mipseb
 
     local ReadArch=$(./scripts/getArch.sh $FPATH/images/${ImageID}.tar.gz | tee /opt/firmadyne/samples-out/$BASENAME-getArch-output)
 
@@ -79,10 +79,10 @@ get_arch() {
 
     if [ ! -z "$Arch" ]; then
         echo "successfully inferred architecture"
-        echo "$Arch"
+        echo "$Arch" | tee /opt/firmadyne/samples-out/$BASENAME-getArch-output
     else
         echo "default architecture guessed"
-        echo "$DefaultArch"
+        echo "$DefaultArch" | tee /opt/firmadyne/samples-out/$BASENAME-getArch-output
     fi
 }
 
@@ -93,15 +93,20 @@ tar2db() {
 
 make_image() {
     local ImageID=$1
-    local Arch=$(./scripts/getArch.sh ./images/${ImageID}.tar.gz | cut -d: -f2 | sed -e 's/ //g')
+    # Either call get_arch() or store value for arch somewhere else
+    Arch=$(cat /opt/firmadyne/samples-out/$BASENAME-getArch-output)
+    echo "$Arch was here in make image"
+    # local Arch=$(./scripts/getArch.sh ./images/${ImageID}.tar.gz | cut -d: -f2 | sed -e 's/ //g')
     # store make image output for creation of docker image
-    ./scripts/makeImage.sh $ImageID $Arch | tee /opt/firmadyne/samples-out/$BASENAME-makeImage-output
+    ./scripts/makeImage.sh $ImageID $Arch |& tee /opt/firmadyne/samples-out/$BASENAME-makeImage-output
 }
 
 infer_network() {
     local ImageID=$1
-    local Arch=$(./scripts/getArch.sh ./images/${ImageID}.tar.gz | cut -d: -f2 | sed -e 's/ //g')
-    ./scripts/inferNetwork.sh $ImageID $Arch | tee /opt/firmadyne/samples-out/$BASENAME-inferNetwork-output
+    # local Arch=$(./scripts/getArch.sh ./images/${ImageID}.tar.gz | cut -d: -f2 | sed -e 's/ //g')
+    Arch=$(cat /opt/firmadyne/samples-out/$BASENAME-getArch-output)
+    echo "$Arch was here in infer_network"
+    ./scripts/inferNetwork.sh $ImageID $Arch |& tee /opt/firmadyne/samples-out/$BASENAME-inferNetwork-output
     local NICS=$(grep "Interfaces:" /opt/firmadyne/samples-out/$BASENAME-inferNetwork-output | cut -d: -f2 | cut -d, -f2 | sed 's/)]//g' | sed "s/'//g" | sed 's/ //g')
     # store nic info for scanning
     echo $NICS
@@ -115,7 +120,7 @@ start_emulator() {
 
 process_firmware() {
     local ImageID=$(get_image_id)
-    local Arch=$(get_arch ${ImageID})
+    Arch=$(get_arch ${ImageID})
 
     echo "ImageID: $ImageID"
     echo "Arch: $Arch"

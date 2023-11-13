@@ -80,7 +80,7 @@ services:
       - "/dev/loop10:/dev/loop10"
       - "/dev/loop11:/dev/loop11"
       - "/dev/loop12:/dev/loop12"
-    command: [ "/opt/firmadyne/autodyne-0.5b.sh", "foo", "1.bin"]
+    command: [ "/opt/firmadyne/autodyne-0.5b.sh", "netgear", "1.tar"]
     volumes:
       - ./samples:/opt/firmadyne/samples
       - ./sample_output:/opt/firmadyne/samples-out
@@ -112,7 +112,7 @@ services:
       - "/dev/loop10:/dev/loop10"
       - "/dev/loop11:/dev/loop11"
       - "/dev/loop12:/dev/loop12"
-    command: [ "/opt/firmadyne/autodyne-0.5b.sh", "netgear", "2.bin"]
+    command: [ "/opt/firmadyne/autodyne-0.5b.sh", "lede", "2.bin"]
     volumes:
       - ./samples:/opt/firmadyne/samples
       - ./sample_output:/opt/firmadyne/samples-out

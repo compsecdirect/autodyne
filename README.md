@@ -32,6 +32,7 @@ bin-extractor-output
 bin-getArch-output  
 bin-inferNetwork-output  
 bin-makeImage-output
+2. The standalone autodyne container launched does the db init on the postgres container. The autodyne-em1, autodyne-em2, etc, are the containers that are attempting to emulate samples.  
 
 ## Authors
 o Charles Boyd  
