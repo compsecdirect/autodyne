@@ -98,6 +98,7 @@ make_image() {
     echo "$Arch was here in make image"
     # local Arch=$(./scripts/getArch.sh ./images/${ImageID}.tar.gz | cut -d: -f2 | sed -e 's/ //g')
     # store make image output for creation of docker image
+    # has issues when not enough loop devices are available
     ./scripts/makeImage.sh $ImageID $Arch |& tee /opt/firmadyne/samples-out/$BASENAME-makeImage-output
 }
 
