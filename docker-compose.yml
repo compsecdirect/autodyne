@@ -18,17 +18,28 @@ services:
       - POSTGRES_USER=firmadyne
       - POSTGRES_PASSWORD=firmadyne
       - POSTGRES_DB=firmware
+    healthcheck:
+      test: ["CMD-SHELL", "sh -c 'pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}'"]
+      interval: 10s
+      timeout: 3s
+      retries: 3
     networks:
       autodyne:
         ipv4_address: 172.21.0.2
         aliases:
           - postgres
           - autodyne-db
-  autodyne:
+  setup:
     image: autodyne
-    container_name: autodyne
+    container_name: setup
     depends_on:
-      - postgres
+      postgres:
+        condition: service_healthy
+    healthcheck:
+      test: [ "CMD-SHELL", "sh -c 'pg_isready -h autodyne-db -U ${POSTGRES_USER} -d ${POSTGRES_DB}'" ]
+      interval: 10s
+      timeout: 3s
+      retries: 3
     privileged: true
     environment:
       - AUTODYNE_INIT_DB=1
@@ -56,13 +67,13 @@ services:
       autodyne:
         ipv4_address: 172.21.0.3
         aliases:
-          - autodyne
+          - setup
   emulator-1:
     image: autodyne
     container_name: autodyne-em1
     depends_on:
-      - postgres
-      - autodyne
+      setup:
+        condition: service_healthy
     privileged: true
     devices:
       - "/dev/mapper/control:/dev/mapper/control"
@@ -93,8 +104,8 @@ services:
     image: autodyne
     container_name: autodyne-em2
     depends_on:
-      - postgres
-      - autodyne
+      setup:
+        condition: service_healthy
     privileged: true
     devices:
       - "/dev/mapper/control:/dev/mapper/control"
