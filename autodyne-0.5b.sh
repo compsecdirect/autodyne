@@ -133,5 +133,15 @@ process_firmware() {
     start_emulator $ImageID
 }
 
+destroy_loops() {
+  LOOPS=$(losetup -a | grep firmadyne | cut -d: -f1 )
+  if [ -n "$LOOPS" ]; then
+    for loop in $LOOPS; do
+      echo "Deleting $loop loop device"
+      losetup -d $loop || echo "Delete failed"
+    done
+  fi
+}
+
 
 setup && run_extractor && process_firmware
