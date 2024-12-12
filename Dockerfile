@@ -55,12 +55,18 @@ RUN sudo python /opt/ubi_reader/setup.py install
 WORKDIR /opt
 
 # Binwalk
-RUN cd /opt
-RUN sudo git clone --recursive https://github.com/ReFirmLabs/binwalk.git
-RUN cd /opt/binwalk/
-WORKDIR /opt/binwalk
-RUN python setup.py install
-RUN python3 setup.py install
+RUN cd /opt && wget https://github.com/ReFirmLabs/binwalk/archive/refs/tags/v3.1.0.zip \
+    && unzip v3.1.0.zip && cd v3.1.0
+RUN curl https://sh.rustup.rs -sSf | sh -s -- -y
+
+ENV PATH="/root/.cargo/bin:${PATH}"
+
+RUN cargo install binwalk
+#RUN sudo git clone --recursive https://github.com/ReFirmLabs/binwalk.git
+#RUN cd /opt/binwalk/
+#WORKDIR /opt/binwalk
+#RUN python setup.py install
+#RUN python3 setup.py install
 
 # sasquatch
 WORKDIR /opt
