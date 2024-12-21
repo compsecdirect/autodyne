@@ -60,8 +60,8 @@ RUN curl https://sh.rustup.rs -sSf | sh -s -- -y
 ENV PATH="/root/.cargo/bin:${PATH}"
 
 # Binwalk
-RUN cd /opt  \
-RUN wget https://github.com/ReFirmLabs/binwalk/archive/refs/tags/v3.1.0.zip -O /opt/v3.1.0.zip
+RUN cd /opt
+RUN wget https://github.com/ReFirmLabs/binwalk/archive/refs/tags/v3.1.0.zip
 RUN ls -la /opt
 RUN unzip /opt/v3.1.0.zip
 RUN cd /opt/binwalk-3.1.0/
