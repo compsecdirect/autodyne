@@ -21,7 +21,7 @@ RUN sudo apt-get update && sudo apt-get -y upgrade
 
 RUN sudo apt-get install busybox-static fakeroot git tmux dmsetup kpartx netcat-openbsd nmap python-psycopg2 python3-psycopg2 libmagic1 python-lzma python-lzo liblzo2-dev python-six snmp uml-utilities util-linux vlan git unzip curl wget nano postgresql-client socat -y
 
-RUN sudo apt-get install qemu-system-arm qemu-system-mips qemu-system-x86 qemu-utils build-essential liblzma-dev liblzo2-dev zlib1g-dev -y
+RUN sudo apt-get install qemu-system-arm qemu-system-mips qemu-system-x86 qemu-utils build-essential liblzma-dev liblzo2-dev zlib1g-dev pkg-config -y
 
 # Weird hijack to install on ubuntu 18....
 RUN wget http://mirrors.kernel.org/ubuntu/pool/universe/c/cramfs/cramfsprogs_1.1-6ubuntu1_amd64.deb -O /tmp/cramfsprogs_1.1-6ubuntu1_amd64.deb && sudo dpkg -i /tmp/cramfsprogs_1.1-6ubuntu1_amd64.deb
