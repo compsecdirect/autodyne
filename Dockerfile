@@ -62,7 +62,6 @@ ENV PATH="/root/.cargo/bin:${PATH}"
 # Binwalk
 RUN cd /opt
 RUN wget https://github.com/ReFirmLabs/binwalk/archive/refs/tags/v3.1.0.zip
-RUN ls -la /opt
 RUN unzip /opt/v3.1.0.zip
 RUN cd /opt/binwalk-3.1.0/
 
