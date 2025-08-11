@@ -1,5 +1,3 @@
-version: '3.5'
-
 networks:
   autodyne:
     ipam:
@@ -91,7 +89,7 @@ services:
       - "/dev/loop10:/dev/loop10"
       - "/dev/loop11:/dev/loop11"
       - "/dev/loop12:/dev/loop12"
-    command: [ "/opt/firmadyne/autodyne-0.5b.sh", "netgear", "1.tar"]
+    command: [ "/opt/firmadyne/autodyne-0.5b.sh", "netgear", "1.bin"]
     volumes:
       - ./samples:/opt/firmadyne/samples
       - ./sample_output:/opt/firmadyne/samples-out

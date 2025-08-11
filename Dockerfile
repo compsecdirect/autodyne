@@ -67,11 +67,12 @@ RUN cd /opt/binwalk-3.1.0/
 
 
 RUN cargo install binwalk
-#RUN sudo git clone --recursive https://github.com/ReFirmLabs/binwalk.git
-#RUN cd /opt/binwalk/
-#WORKDIR /opt/binwalk
-#RUN python setup.py install
-#RUN python3 setup.py install
+RUN mkdir /opt/binwalk && cd /opt/binwalk/
+RUN wget https://github.com/ReFirmLabs/binwalk/archive/refs/tags/v2.3.4.zip
+RUN unzip v2.3.4.zip
+WORKDIR binwalk-2.3.4
+RUN python setup.py install
+RUN python3 setup.py install
 
 # sasquatch
 WORKDIR /opt
